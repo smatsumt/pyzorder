@@ -38,6 +38,12 @@ You can easily implement regional indexing access with z-order curved data.
 
 ## Usage
 
+### install
+```shell script
+pip install pyzorder
+```
+
+### code sample
 ```python
 from pyzorder import ZOrderIndexer
 
@@ -101,6 +107,12 @@ z-order curve でインターリーブした値を格納しておき、その値
 
 ## 使い方
 
+### インストール
+```shell script
+pip install pyzorder
+```
+
+### コードサンプル
 ```python
 from pyzorder import ZOrderIndexer
 
