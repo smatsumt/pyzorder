@@ -1,23 +1,56 @@
-# PyZOrder
+# pyzorder
 
 Python implementation of z-order curve (a.k.a. Morton order)
+
+z-order curve maps multidimensional data to one dimension.
+
+Using z-order curve, you can implement multidimensional sort key for DynamoDB, which allows only 1 sort key at once.
+pyzorder helps to implement ranging indexing with z-order curved data.
 
 (日本語ドキュメントは、英語版の後ろにあります)
 
 ## What is "z-order curve"? 
 
+"z-order curve" maps multidimensional data to one dimension while preserving locality of the data points.
+The z value is calculated by interleaving input values.
+
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Z-curve.svg/400px-Z-curve.svg.png)
 (cited from [Z\-order curve \- Wikipedia](https://en.wikipedia.org/wiki/Z-order_curve))
 
+Typical usage is for DynamoDB, which allows only 1 sort key at once.
+For example, if you want to indexing the data with both x-axis and y-axis,
+you can map x and y with z-order curve, and put the z-ordered data in the DynamoDB table as Sort Key.
+However, you have to care about "unnecessary region."
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/BIGMIN.svg/400px-BIGMIN.svg.png)  
+(cited again from [Z\-order curve \- Wikipedia](https://en.wikipedia.org/wiki/Z-order_curve))
+
+If you want to access (x = 2, ..., 3, y = 2, ..., 6), the corresponding region is dotted lines square.
+When accessing z-order curve sequentially, the next value of "15" should be "36".
+The region "16" to "35" is "unnecessary region."
+So, you need to treat with such "unnecessary region" efficiently.
+
+**`pyzorder` implements `next_zorder_index` which returns next valid z-order value**
+You can easily implement regional indexing access with z-order curved data.
+
+`next_zorder_index` is re-implementaion of Tropf, H.; Herzog, H. (1981), ["Multidimensional Range Search in Dynamically Balanced Trees"](http://www.vision-tools.com/h-tropf/multidimensionalrangequery.pdf) in Python.
+`next_zorder_index` is shown as `BIGMIN` in the paper.
 
 ## Usage
 
 ```python
 from pyzorder import ZOrderIndexer
 
-zi = ZOrderIndexer((2, 4), (10, 14))
+zi = ZOrderIndexer((2, 3), (2, 6))
 
-z_2_10 = zi.zindex(2, 10)
+z_2_2 = zi.zindex(2, 2)
+# z_2_2 = 12
+
+zi.next_zorder_index(z_2_2)
+# return 13
+
+zi.next_zorder_index(15)
+# return 36
 ```
 
 ## Reference
@@ -28,7 +61,13 @@ z_2_10 = zi.zindex(2, 10)
 - [Z\-order indexing for multifaceted queries in Amazon DynamoDB: Part 2 \| AWS Database Blog](https://aws.amazon.com/jp/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-2/)
 - Tropf, H.; Herzog, H. (1981), ["Multidimensional Range Search in Dynamically Balanced Trees"](http://www.vision-tools.com/h-tropf/multidimensionalrangequery.pdf)
 
-# PyZOrder（日本語ドキュメント）
+# pyzorder（日本語ドキュメント）
+
+z-order curve (a.k.a. Morton order) の Python 実装
+
+z-order curve は多次元データを 1 次元に集約します。
+
+pyzorder を使うことで、DynamoDB のようなソートキーを 1 つだけ持てる DB について、多次元の領域インデックスを可能にします。
 
 ## "z-order curve" とは?
 
@@ -41,9 +80,9 @@ z-order curve では、各ビットをインターリーブすることで、そ
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Z-curve.svg/400px-Z-curve.svg.png)  
 (cited from [Z\-order curve \- Wikipedia](https://en.wikipedia.org/wiki/Z-order_curve))
 
-
 利用用途として、DynamoDB のようにソート用インデックスを 1 つだけ持てるようなデータベースに対して、
 複数のカラムでのインデックスを実現したい場合に使えます。
+例えば、x 座標, y 座標の両方でインデックスをしたい場合などです。
 z-order curve でインターリーブした値を格納しておき、その値をソートキーにすれば、2次元データに対するインデックスが可能になります。
 ただし、このとき 1 つ注意すべき点があります。
 
