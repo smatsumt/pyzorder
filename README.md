@@ -44,6 +44,8 @@ z-order curve では、各ビットをインターリーブすることで、そ
 
 利用用途として、DynamoDB のようにソート用インデックスを 1 つだけ持てるようなデータベースに対して、
 複数のカラムでのインデックスを実現したい場合に使えます。
+z-order curve でインターリーブした値を格納しておき、その値をソートキーにすれば、2次元データに対するインデックスが可能になります。
+ただし、このとき 1 つ注意すべき点があります。
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/BIGMIN.svg/400px-BIGMIN.svg.png)  
 (cited again from [Z\-order curve \- Wikipedia](https://en.wikipedia.org/wiki/Z-order_curve))
@@ -52,7 +54,7 @@ z-order curve では、各ビットをインターリーブすることで、そ
 このとき、z-order の値を順番にたどると z-order "15" の次に範囲内となる z-order は "36" となっています。
 つまり、このような 2 次元領域へアクセスする場合は、単純に z-order の値をたどるのではなく、このような "飛び地" を効率よく処理する必要があります。
 
-`pyzorder` は、"15" の次の有効な z-order である "36" を求める `next_zorder_index` を実装しています。
+**`pyzorder` は、"15" の次の有効な z-order である "36" を求める `next_zorder_index` を実装しています。**
 これにより、z-order curve で表現されたデータから、任意の2次元領域へのアクセスを実現できます。
 
 なお、`next_zorder_index` を求めるアルゴリズムは Tropf, H.; Herzog, H. (1981), ["Multidimensional Range Search in Dynamically Balanced Trees"](http://www.vision-tools.com/h-tropf/multidimensionalrangequery.pdf)
