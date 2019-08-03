@@ -56,10 +56,10 @@ zi.next_zorder_index(15)
 ## Reference
 
 - [trevorprater/pymorton: A lightweight and efficient Python Morton encoder with support for geo\-hashing](https://github.com/trevorprater/pymorton)
+- Tropf, H.; Herzog, H. (1981), ["Multidimensional Range Search in Dynamically Balanced Trees"](http://www.vision-tools.com/h-tropf/multidimensionalrangequery.pdf)
 - [Z\-order curve \- Wikipedia](https://en.wikipedia.org/wiki/Z-order_curve)
 - [Z\-Order Indexing for Multifaceted Queries in Amazon DynamoDB: Part 1 \| AWS Database Blog](https://aws.amazon.com/jp/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-1/)
 - [Z\-order indexing for multifaceted queries in Amazon DynamoDB: Part 2 \| AWS Database Blog](https://aws.amazon.com/jp/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-2/)
-- Tropf, H.; Herzog, H. (1981), ["Multidimensional Range Search in Dynamically Balanced Trees"](http://www.vision-tools.com/h-tropf/multidimensionalrangequery.pdf)
 
 # pyzorder-日本語ドキュメント
 
