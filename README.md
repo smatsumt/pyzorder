@@ -7,7 +7,7 @@ z-order curve maps multidimensional data to one dimension.
 Using z-order curve, you can implement multidimensional sort key for DynamoDB, which allows only 1 sort key at once.
 pyzorder helps to implement ranging indexing with z-order curved data.
 
-(日本語ドキュメントは、英語版の後ろにあります)
+([日本語ドキュメント](#pyzorder-日本語ドキュメント)は、英語版の後ろにあります)
 
 ## What is "z-order curve"? 
 
@@ -61,7 +61,7 @@ zi.next_zorder_index(15)
 - [Z\-order indexing for multifaceted queries in Amazon DynamoDB: Part 2 \| AWS Database Blog](https://aws.amazon.com/jp/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-2/)
 - Tropf, H.; Herzog, H. (1981), ["Multidimensional Range Search in Dynamically Balanced Trees"](http://www.vision-tools.com/h-tropf/multidimensionalrangequery.pdf)
 
-# pyzorder（日本語ドキュメント）
+# pyzorder-日本語ドキュメント
 
 z-order curve (a.k.a. Morton order) の Python 実装
 
