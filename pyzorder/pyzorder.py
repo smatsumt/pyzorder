@@ -4,7 +4,7 @@
 from __future__ import print_function
 import sys
 
-import pymorton
+from . import pymorton
 
 # use xrange as range in Python2 environment
 try:
