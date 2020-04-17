@@ -22,7 +22,7 @@ For example, if you want to indexing the data with both x-axis and y-axis,
 you can map x and y with z-order curve, and put the z-ordered data in the DynamoDB table as Sort Key.
 However, you have to care about "unnecessary region."
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/BIGMIN.svg/400px-BIGMIN.svg.png)  
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/BIGMIN_search_in_a_Z-order_curve.svg/493px-BIGMIN_search_in_a_Z-order_curve.svg.png)  
 (cited again from [Z\-order curve \- Wikipedia](https://en.wikipedia.org/wiki/Z-order_curve))
 
 If you want to access (x = 2, ..., 3, y = 2, ..., 6), the corresponding region is dotted lines square.
@@ -92,7 +92,7 @@ z-order curve では、各ビットをインターリーブすることで、そ
 z-order curve でインターリーブした値を格納しておき、その値をソートキーにすれば、2次元データに対するインデックスが可能になります。
 ただし、このとき 1 つ注意すべき点があります。
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/BIGMIN.svg/400px-BIGMIN.svg.png)  
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/BIGMIN_search_in_a_Z-order_curve.svg/493px-BIGMIN_search_in_a_Z-order_curve.svg.png)  
 (cited again from [Z\-order curve \- Wikipedia](https://en.wikipedia.org/wiki/Z-order_curve))
 
 (x = 2, ..., 3, y = 2, ..., 6) の範囲をアクセスしたい場合、この図では点線で囲まれた領域が該当します。
